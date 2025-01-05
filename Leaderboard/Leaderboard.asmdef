@@ -1,6 +1,6 @@
 {
     "name": "Leaderboard",
-    "rootNamespace": "RQLib.Leadeboard",
+    "rootNamespace": "RQLib.Leaderboard",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
