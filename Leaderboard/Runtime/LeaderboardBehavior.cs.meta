@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: e526778d199f4c1d9da450fd432cad5d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - Leaderboard: {fileID: 11400000, guid: 5bb1cc4939ba8c14ca83a2c45bab818f, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
