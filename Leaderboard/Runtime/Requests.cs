@@ -9,11 +9,16 @@ namespace RQGLib.Leaderboard
 {
     public class Requests
     {
-        public static event Action SessionStartSuccessful;
+        public static event Action StartSessionStartSuccessful;
         public static event Action SubmitScoreSuccessful;
         public static event Action GetPlayerRankSuccessful;
         public static event Action GetScoresListSuccessful;
         public static event Action SetPlayerNameSuccessful;
+        public static event Action StartSessionStartFailed;
+        public static event Action SubmitScoreFailed;
+        public static event Action GetPlayerRankFailed;
+        public static event Action GetScoresListFailed;
+        public static event Action SetPlayerNameFailed;
         private static string _currentSession;
         public static List<DataContainer.ResponseItem> ResponseList;
         
@@ -38,7 +43,11 @@ namespace RQGLib.Leaderboard
             {
                 request.SetRequestHeader("Content-Type", "application/json");
                 yield return request.SendWebRequest();
-                if (request.result != UnityWebRequest.Result.Success) Debug.Log(request.error);
+                if (request.result != UnityWebRequest.Result.Success)
+                {
+                 TriggerAction(StartSessionStartFailed);
+                 ClearActionInvocationList(StartSessionStartSuccessful);
+                }
                 else
                 {
                     string json = request.downloadHandler.text;
@@ -49,7 +58,7 @@ namespace RQGLib.Leaderboard
                     player.Metadata = newSessionRequest.metadata;
                     player.SeenBefore = newSessionRequest.seen_before;
                     _currentSession = newSessionRequest.session_token;
-                    TriggerAction(SessionStartSuccessful);
+                    TriggerAction(StartSessionStartSuccessful);
                 }
             }
         }
@@ -62,7 +71,11 @@ namespace RQGLib.Leaderboard
             {
                 request.SetRequestHeader("x-session-token", player.SessionToken);
                 yield return request.SendWebRequest();
-                if (request.result != UnityWebRequest.Result.Success) Debug.Log(request.error);
+                if (request.result != UnityWebRequest.Result.Success)
+                {
+                    TriggerAction(SubmitScoreFailed);
+                    ClearActionInvocationList(SubmitScoreSuccessful);
+                }
                 else
                 {
                     string json = request.downloadHandler.text;
@@ -80,7 +93,12 @@ namespace RQGLib.Leaderboard
             {
                 request.SetRequestHeader("x-session-token", player.SessionToken);
                 yield return request.SendWebRequest();
-                if(request.result != UnityWebRequest.Result.Success) Debug.Log(request.error);
+                if (request.result != UnityWebRequest.Result.Success)
+                {
+                    TriggerAction(GetPlayerRankFailed);
+                    ClearActionInvocationList(GetPlayerRankFailed);
+                }
+                else
                 {
                     string json = request.downloadHandler.text;
                     DataContainer.ResponseItem responseItem = JsonUtility.FromJson<DataContainer.ResponseItem>(json);
@@ -97,7 +115,11 @@ namespace RQGLib.Leaderboard
             {
                 request.SetRequestHeader("x-session-token", _currentSession);
                 yield return request.SendWebRequest();
-                if (request.result != UnityWebRequest.Result.Success) Debug.Log(request.error);
+                if (request.result != UnityWebRequest.Result.Success)
+                {
+                    TriggerAction(GetScoresListFailed);
+                    ClearActionInvocationList(GetScoresListSuccessful);
+                }
                 else
                 {
                     string json = request.downloadHandler.text;
@@ -114,12 +136,15 @@ namespace RQGLib.Leaderboard
             request.SetRequestHeader("x-session-token", player.SessionToken);
             request.SetRequestHeader("LL-Version", "2021-03-01");
             yield return request.SendWebRequest();
-            if(request.result != UnityWebRequest.Result.Success) Debug.Log(request.error);
+            if(request.result != UnityWebRequest.Result.Success)
+            {
+                TriggerAction(SetPlayerNameFailed);
+                ClearActionInvocationList(SetPlayerNameSuccessful);
+            }
             else
             {
                 string json = request.downloadHandler.text;
                 DataContainer.ResponseItem responseItem = JsonUtility.FromJson<DataContainer.ResponseItem>(json);
-                
                 player.Name = responseItem.player.name;
                 TriggerAction(SetPlayerNameSuccessful);
             }

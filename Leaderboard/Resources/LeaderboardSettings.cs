@@ -17,7 +17,6 @@ namespace RQGLib.Leaderboard
         {
             #if UNITY_EDITOR
             AssetPath = AssetDatabase.GetAssetPath(this);
-            Debug.Log("on enable");
             #endif
         }
     }

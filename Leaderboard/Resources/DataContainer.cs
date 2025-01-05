@@ -9,7 +9,7 @@ namespace RQGLib.Leaderboard
         
         //player data is created to track data coming from the leaderboard
         //all other data containers are used by methods in the requests class
-        //all you need to do is create the player data and use the methods in requests to get leaderboards
+        //all you need to do is create the player data and use the methods in leaderboard behavior
         
         [Serializable]
         public class PlayerData
