@@ -33,11 +33,13 @@ namespace RQGLib.Leaderboard
     {
         [MenuItem("Window/Leaderboard")]
         private static void ShowWindow() => GetWindow<CustomLeaderboardWindow>("Leaderboard");
+        [SerializeField] private LeaderboardSettings _settings;
         private void OnGUI()
         {
-            Reference.Settings.GameKey = EditorGUILayout.TextField("Game Key", Reference.Settings.GameKey);
-            Reference.Settings.LeaderboardID = EditorGUILayout.TextField("Leaderboard ID", Reference.Settings.LeaderboardID);
-            Reference.Settings.LeaderboardRange = EditorGUILayout.IntField("Leaderboard Range", Reference.Settings.LeaderboardRange);
+            _settings = Reference.Settings;
+            Reference.Settings.GameKey = EditorGUILayout.TextField("Game Key",_settings?.GameKey ?? Reference.Settings.GameKey);
+            Reference.Settings.LeaderboardID = EditorGUILayout.TextField("Leaderboard ID", _settings?.LeaderboardID ?? Reference.Settings.LeaderboardID);
+            Reference.Settings.LeaderboardRange = EditorGUILayout.IntField("Leaderboard Range", _settings?.LeaderboardRange ?? Reference.Settings.LeaderboardRange);
             AssetDatabase.SaveAssets();
         }
     }
