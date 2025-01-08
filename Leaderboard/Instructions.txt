@@ -1,0 +1,28 @@
+Setup:
+    to use this package, you need to create an account on lootlocker.com
+    create a game and setup a leaderboard to use guest login or steam
+    in the leaderboard settings window or leaderboard settings asset
+    add your game key and leaderboard id and platform
+Use:
+    create a game object for your leaderboard behavior and add a leaderboard behavior script
+    
+    use the leaderboard behavior player property to set player with new DataContainer.PlayerData()
+    or a saved DataContainer.PlayerData()
+    
+    with a player created, you can start a session using LeaderboardBehavior.StartSession()
+    starting a session fills the player data container with a session token and member id
+    
+    after starting a session, you can use LeaderboardBehavior.SubmitScore() to send scores
+    use LeaderboardBehavior.SetName() will save the player's name with their profile
+    
+    LeaderboardBehavior.GetTopPlayersLeaderboardList() gets a list of size [leaderboard range]
+    starting at rank one
+    
+    LeaderboardBehavior.GetPlayerLeaderboardList() gets list based around the currently set player
+    it puts the set player as the middle rank of retrieved leaderboard (if the player's rank greater than
+    the leaderboard range, half the range will be subtracted from the rank and the returned list will start at that rank)
+    to get different players ranks set leaderboard behavior player and if the player has no session token start a session
+     
+    
+    
+    

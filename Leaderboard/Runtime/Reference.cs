@@ -6,7 +6,8 @@ namespace RQGLib.Leaderboard
 {
     public class Reference
     {
-        //urls used by requests to fetch data
+        //methods and properties that return endpoint urls, and data strings for fetch requests
+        //more endpoints can be found in the game api section at lootlocker.com
         public static string LeaderboardSettingsPath => LeaderboardSettings.AssetPath;
         public static LeaderboardSettings Settings => AssetDatabase.LoadAssetAtPath<LeaderboardSettings>(LeaderboardSettingsPath);
         private static string _gameKey => Settings.GameKey;

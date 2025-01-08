@@ -32,7 +32,6 @@ namespace RQGLib.Leaderboard
         
         [Serializable]
         public struct NewSessionRequest
-        // public class NewSessionRequest
         {
             public string session_token;
             public string player_id;
@@ -43,7 +42,6 @@ namespace RQGLib.Leaderboard
 
         [Serializable]
         public struct SubmitScoreRequest
-        // public class SubmitScoreRequest
         {
             public string member_id;
             public int rank;
@@ -53,7 +51,6 @@ namespace RQGLib.Leaderboard
 
         [Serializable]
         public struct ScoresListRequest
-        // public class ScoresListRequest
         {
             public Pagination pagination;
             public List<ResponseItem> items;
@@ -67,7 +64,6 @@ namespace RQGLib.Leaderboard
         
         [Serializable]
         public struct ResponseItem
-        // public class ResponseItem
         {
             public string member_id;
             public int rank;
@@ -76,7 +72,6 @@ namespace RQGLib.Leaderboard
             public string metadata;
             [Serializable]
             public struct Player
-            // public class Player
             {
                 public int id;
                 public string public_uid;

@@ -9,6 +9,10 @@ namespace RQGLib.Leaderboard
 {
     public class Requests
     {
+        /*
+         * this file has some coroutines and events that correspond to
+         * them to be completed on success or fail
+        */
         public static event Action StartSessionStartSuccessful;
         public static event Action SubmitScoreSuccessful;
         public static event Action GetPlayerRankSuccessful;

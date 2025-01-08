@@ -1,21 +1,30 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-// using UnityEditor;
 
 namespace RQGLib.Leaderboard
 {
     
-    
-    
     [Serializable]
     public class LeaderboardBehavior : MonoBehaviour
     {
+        
+        /*
+         * these methods run coroutines which fetch data from the leaderboard backend
+         * use Request.[StartSessionStartSuccessful,SubmitScoreSuccessful,GetPlayerRankSuccessful,
+         * GetScoresListSuccessful,SetPlayerNameSuccessful,StartSessionStartFailed,SubmitScoreFailed;
+         * GetPlayerRankFailed,GetScoresListFailed,SetPlayerNameFailed] for actions to complete on
+         * completion or fail;
+         */
         [SerializeField] public Leaderboard Leaderboard;
         [SerializeField] private List<DataContainer.ResponseItem> _ranks;
         public string Status = string.Empty;
         private int _leaderboardRange => Reference.Settings.LeaderboardRange;
         public DataContainer.PlayerData Player;
+        
+        // public void CreateNewPlayer() => Player = new DataContainer.PlayerData();
+        //
+        // public void SetPlayer(DataContainer.PlayerData player) => Player = player; 
         public void StartSession() => StartCoroutine(Requests.StartSession(Player));
 
         public void SubmitScore() => StartCoroutine(Requests.SubmitScore(Player));
