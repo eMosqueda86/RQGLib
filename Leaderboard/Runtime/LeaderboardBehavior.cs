@@ -22,9 +22,6 @@ namespace RQGLib.Leaderboard
         private int _leaderboardRange => Reference.Settings.LeaderboardRange;
         public DataContainer.PlayerData Player;
         
-        // public void CreateNewPlayer() => Player = new DataContainer.PlayerData();
-        //
-        // public void SetPlayer(DataContainer.PlayerData player) => Player = player; 
         public void StartSession() => StartCoroutine(Requests.StartSession(Player));
 
         public void SubmitScore() => StartCoroutine(Requests.SubmitScore(Player));

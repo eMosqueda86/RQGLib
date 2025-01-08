@@ -22,7 +22,9 @@ Use:
     it puts the set player as the middle rank of retrieved leaderboard (if the player's rank greater than
     the leaderboard range, half the range will be subtracted from the rank and the returned list will start at that rank)
     to get different players ranks set leaderboard behavior player and if the player has no session token start a session
-     
+    
+    retrieved leaderboards will be stored on the leaderboard scriptable object and can be referenced by 
+    LeaderboardBehavior.Leaderboard.Ranks
     
     
     
