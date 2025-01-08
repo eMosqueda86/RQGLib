@@ -6,7 +6,7 @@ using UnityEngine;
 namespace RQGLib.Leaderboard
 {
     [UnityEditor.CustomEditor(typeof(LeaderboardBehavior))]
-    public class CustomEditor : Editor
+    public class CustomEditorInspector : Editor
     {
         public override void OnInspectorGUI()
         {
@@ -29,18 +29,5 @@ namespace RQGLib.Leaderboard
         }
     }
     
-    public class CustomLeaderboardWindow : EditorWindow
-    {
-        [MenuItem("Window/Leaderboard")]
-        private static void ShowWindow() => GetWindow<CustomLeaderboardWindow>("Leaderboard");
-        [SerializeField] private LeaderboardSettings _settings;
-        private void OnGUI()
-        {
-            _settings = Reference.Settings;
-            Reference.Settings.GameKey = EditorGUILayout.TextField("Game Key",_settings?.GameKey ?? Reference.Settings.GameKey);
-            Reference.Settings.LeaderboardID = EditorGUILayout.TextField("Leaderboard ID", _settings?.LeaderboardID ?? Reference.Settings.LeaderboardID);
-            Reference.Settings.LeaderboardRange = EditorGUILayout.IntField("Leaderboard Range", _settings?.LeaderboardRange ?? Reference.Settings.LeaderboardRange);
-            AssetDatabase.SaveAssets();
-        }
-    }
+
 }

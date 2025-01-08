@@ -11,6 +11,7 @@ namespace RQGLib.Leaderboard
         public string GameKey;
         public string LeaderboardID;
         public int LeaderboardRange = 10;
+        public string Platform;
         public static string AssetPath;
     
         private void OnEnable()

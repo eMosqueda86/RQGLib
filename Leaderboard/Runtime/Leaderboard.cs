@@ -9,6 +9,5 @@ namespace RQGLib.Leaderboard
     public class Leaderboard : ScriptableObject
     {
         public List<DataContainer.ResponseItem> Ranks;
-
     }
 }

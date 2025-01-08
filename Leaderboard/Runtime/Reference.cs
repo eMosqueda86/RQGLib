@@ -6,11 +6,12 @@ namespace RQGLib.Leaderboard
 {
     public class Reference
     {
+        //urls used by requests to fetch data
         public static string LeaderboardSettingsPath => LeaderboardSettings.AssetPath;
         public static LeaderboardSettings Settings => AssetDatabase.LoadAssetAtPath<LeaderboardSettings>(LeaderboardSettingsPath);
         private static string _gameKey => Settings.GameKey;
         private static string _leaderboardID => Settings.LeaderboardID;
-        private static string _platform;
+        private static string _platform => Settings.Platform;
         public static string NewSessionURL => GetSessionURL();
         public static string SetNameURL => "https://api.lootlocker.io/game/player/name";
         public static string SubmitScoreURL => $"https://api.lootlocker.io/game/leaderboards/{_leaderboardID}/submit";
