@@ -1,13 +1,13 @@
 using System;
 using UnityEditor;
 using UnityEngine;
-// using UnityEngine.UI;
 
 namespace RQGLib.Leaderboard
 {
-    [UnityEditor.CustomEditor(typeof(LeaderboardBehavior))]
+    [CustomEditor(typeof(LeaderboardBehavior))]
     public class CustomEditorInspector : Editor
     {
+        #if UNITY_EDITOR
         public override void OnInspectorGUI()
         {
             LeaderboardBehavior leaderboardBehavior = (LeaderboardBehavior)target;
@@ -27,6 +27,8 @@ namespace RQGLib.Leaderboard
                 leaderboardBehavior.GetPlayerLeaderboardList();
             }
         }
+        
+        #endif
     }
     
 

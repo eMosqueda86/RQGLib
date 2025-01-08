@@ -18,7 +18,7 @@ namespace RQGLib.Leaderboard
         public static string GetNewSessionData(DataContainer.PlayerData player)
         {
             string sessionData = $"\"game_key\":\"{_gameKey}\"";
-            if (_platform != null) sessionData += $",\"platform\":\"{_platform}\"";
+            if (!string.IsNullOrEmpty(_platform)) sessionData += $",\"platform\":\"{_platform}\"";
             if (!string.IsNullOrEmpty(player.PlayerIdentifier)) sessionData += $",\"player_identifier\":\"{player.PlayerIdentifier}\"";
             sessionData += ",\"game_version\":\"1.0.0\"";
             return "{" + sessionData + "}";
@@ -30,7 +30,7 @@ namespace RQGLib.Leaderboard
         private static string GetSessionURL()
         {
             string sessionURL = $"https://api.lootlocker.io/game/v2/session";
-            if (_platform == null) sessionURL += "/guest";
+            if (string.IsNullOrEmpty(_platform)) sessionURL += "/guest";
             return sessionURL;
         }
 

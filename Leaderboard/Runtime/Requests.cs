@@ -44,9 +44,9 @@ namespace RQGLib.Leaderboard
                 request.SetRequestHeader("Content-Type", "application/json");
                 yield return request.SendWebRequest();
                 if (request.result != UnityWebRequest.Result.Success)
-                {
-                 TriggerAction(StartSessionStartFailed);
-                 ClearActionInvocationList(StartSessionStartSuccessful);
+                { 
+                    TriggerAction(StartSessionStartFailed);
+                    ClearActionInvocationList(StartSessionStartSuccessful);
                 }
                 else
                 {
@@ -63,7 +63,6 @@ namespace RQGLib.Leaderboard
             }
         }
         public static IEnumerator SubmitScore(DataContainer.PlayerData player)
-
         {
             string url = Reference.SubmitScoreURL;
             string submitData = Reference.GetSubmitScoreData(player);

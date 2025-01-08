@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 // using UnityEditor;
 
@@ -10,8 +11,8 @@ namespace RQGLib.Leaderboard
     [Serializable]
     public class LeaderboardBehavior : MonoBehaviour
     {
-        public Leaderboard Leaderboard;
-        
+        [SerializeField] public Leaderboard Leaderboard;
+        [SerializeField] private List<DataContainer.ResponseItem> _ranks;
         public string Status = string.Empty;
         private int _leaderboardRange => Reference.Settings.LeaderboardRange;
         public DataContainer.PlayerData Player;
@@ -22,8 +23,12 @@ namespace RQGLib.Leaderboard
         public void SetPlayerName() => StartCoroutine(Requests.SetPlayerName(Player));
         
         private void GetPlayerRank() => StartCoroutine(Requests.GetPlayerRank(Player));
-        
-        public void GetResponseListReference() => Leaderboard.Ranks = Requests.ResponseList;
+
+        public void GetResponseListReference()
+        {
+            Leaderboard.Ranks = Requests.ResponseList;
+            _ranks = Leaderboard.Ranks;
+        } 
 
         public void GetTopPlayersLeaderboardList() => StartCoroutine(Requests.GetScoresList(_leaderboardRange));
 

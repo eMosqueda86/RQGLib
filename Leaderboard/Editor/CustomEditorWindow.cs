@@ -9,6 +9,8 @@ namespace RQGLib.Leaderboard
         [MenuItem("Window/Leaderboard Settings")]
         private static void ShowWindow() => GetWindow<CustomLeaderboardWindow>("Leaderboard Settings");
         [SerializeField] private LeaderboardSettings _settings;
+        
+        #if UNITY_EDITOR
         private void OnGUI()
         {
             _settings.GameKey = EditorGUILayout.TextField("Game Key",_settings?.GameKey);
@@ -17,5 +19,7 @@ namespace RQGLib.Leaderboard
             _settings.LeaderboardRange = EditorGUILayout.IntField("Leaderboard Range", _settings?.LeaderboardRange ?? 0);
             AssetDatabase.SaveAssets();
         }
+        
+        #endif
     }
 }
